@@ -17,11 +17,11 @@ export default function RegisterForm() {
     try {
         await registerUser({email, password, phone, username});
         alert("Регистрация успешна");
+        navigate(-1);
     } catch (err) {
         console.log(err.response?.data);
         alert("Ошибка регистрации");
     }
-    navigate(-1);
   };
 
   return (

@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import { a } from "../services/axiosInstance";
+import a from "../services/axiosInstance";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";

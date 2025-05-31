@@ -15,6 +15,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
     password = serializers.CharField(write_only=True)
     phone = serializers.CharField(max_length=12, required=True)
 
@@ -23,7 +24,7 @@ class LoginSerializer(serializers.Serializer):
         if not user:
             raise serializers.ValidationError("Неверное имя пользователя, телефон, или пароль")
         return user
- 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
@@ -32,7 +33,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 # rest serializers
-
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category

@@ -24,5 +24,9 @@ urlpatterns = [
     path("order/create", views.create_order, name="create_order"),
     path("order/<int:pk>", views.order_detail, name="order_detail"),
 
-    path("products/like/<slug:slug>", views.favourite, name="favorite")
+    path('favorites/', views.get_favorites, name="get_favorites"),
+    path('favorites/<slug:products_slug>/', views.toggle_favorite, name="toggle_favorite"),
+
+    path('cart/',views.get_cart ,name="get_cart"),
+    path('cart/<slug:products_slug>/', views.toggle_cart, name="toggle_cart"),
 ]

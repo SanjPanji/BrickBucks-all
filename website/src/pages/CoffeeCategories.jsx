@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import { a } from "../services/axiosInstance";
+import a from "../services/axiosInstance";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Search from "../components/search";

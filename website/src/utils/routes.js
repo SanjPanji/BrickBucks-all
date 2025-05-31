@@ -12,7 +12,7 @@ import {
     GIFT_CARD,
     SUSTAINABILITY,
     INVINCIBLE
-} from "../utils/consts";
+} from "./consts";
 
 import Home from "../pages/Home";
 import CoffeeCategories from "../pages/CoffeeCategories";

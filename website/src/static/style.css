@@ -95,6 +95,16 @@ a {
     cursor: pointer;
 }
 
+.logout {
+    width: 100px;
+    background: var(--white);
+    border: none;
+    color: #046A38;
+    padding: 5px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
 /*footer*/
 footer {
     margin-top: 50px;

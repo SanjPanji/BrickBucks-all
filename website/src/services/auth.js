@@ -1,4 +1,4 @@
-import { a } from "./axiosInstance";
+import a from "./axiosInstance";
 
 export const loginUser = ({email, password}) =>
   a.post("auth/login/", { email, password});

@@ -54,7 +54,7 @@ class UserView(generics.RetrieveAPIView):
 
 
 
-# rest 
+# rest
 # categories
 @api_view(['GET', 'POST'])
 def category_list_create(request):
@@ -220,17 +220,42 @@ def order_detail(request, pk):
 
 
 # favourite
-@api_view(['PATCH'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def favourite(request, slug):
-    try:
-        product = Product.objects.get(slug=slug)
-        is_favorite = request.data.get('is_favourite')
-        if is_favorite is None:
-            return Response({'error': 'is_favourite is required'}, status=status.HTTP_400_BAD_REQUEST)
+def toggle_favorite(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    user = request.user
+    if product in user.favorites.all():
+        user.favorites.remove(product)
+        return Response({"message": "Removed from favorites"}, status=200)
+    else:
+        user.favorites.add(product)
+        return Response({"message": "Added to favorites"}, status=200)
 
-        product.is_favourite = is_favorite
-        product.save()
-        return Response({'message': 'Favourite status updated'}, status=status.HTTP_200_OK)
-    except Product.DoesNotExist:
-        return Response({'error': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_favorites(request):
+    products = request.user.favorites.all()
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+
+# cart
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def toggle_cart(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    user = request.user
+    if product in user.cart.all():
+        user.cart.remove(product)
+        return Response({"message": "Removed from cart"}, status=200)
+    else:
+        user.cart.add(product)
+        return Response({"message": "Added to cart"}, status=200)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_cart(request):
+    products = request.user.cart.all()
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)

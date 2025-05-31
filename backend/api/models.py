@@ -75,11 +75,13 @@ class OrderItem(models.Model):
 # user 
 
 class CustomUser(AbstractUser):
-    """Модель пользователя, использующая только имя пользователя и пароль"""
-    email = models.EmailField(blank=True)  # Разрешаем пустые значенияl
-    phone = models.CharField(max_length=12)
-    USERNAME_FIELD = "username"  # Логин только по username
-    REQUIRED_FIELDS = []  # Убираем email из обязательных полей
+    email = models.EmailField(blank=True, null=True)
+    phone = models.CharField(max_length=12, default='', blank=True)
+    favorites = models.ManyToManyField('Product', related_name='favorited_by', blank=True)
+    cart = models.ManyToManyField('Product', related_name='in_cart_of', blank=True)
+
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = []
 
     def __str__(self):
         return self.username

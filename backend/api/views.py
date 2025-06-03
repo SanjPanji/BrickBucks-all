@@ -28,16 +28,18 @@ class RegisterView(generics.CreateAPIView):
 
 class LoginView(APIView):
     permission_classes = [permissions.AllowAny]
+
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
-            user = serializer.validated_data
-            refresh = RefreshToken.for_user(user)  # Генерация токенов
+            user = serializer.validated_data["user"] 
+            refresh = RefreshToken.for_user(user)     
             return Response(
                 {"refresh": str(refresh), "access": str(refresh.access_token)},
                 status=status.HTTP_200_OK
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
@@ -197,8 +199,6 @@ def create_order(request):
         serializer = OrderSerializer(orders, many = True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        if not request.user.is_staff:
-            return Response({'error': 'Permission denied'}, status=status.HTTP_403_FORBIDDEN)
         serializer = OrderSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

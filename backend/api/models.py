@@ -1,6 +1,7 @@
 from django.db import models
 from pytils.translit import translify
 from django.contrib.auth.models import AbstractUser
+from django.utils.text import slugify
 # Create your models here.
 
 
@@ -23,7 +24,7 @@ class SubCategory(models.Model):
 
     def save (self, *args, **kwargs):
         if not self.slug:
-            self.slug = translify(self.name)
+            self.slug = slugify(self.name)
         super().save(*args, **kwargs)
     
     def __str__ (self):

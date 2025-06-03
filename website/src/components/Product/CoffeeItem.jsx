@@ -5,7 +5,7 @@ function CoffeeItem ({product}) {
     return (
         <div className="sub-coffee-card">
             <img src={product.image} alt={product.name} />
-            <Link to={COFFEE_ORDER}>
+            <Link to={`/menu/${product.category}/${product.id}`}>
             <h4 className="sub-coffee-title">{product.name}</h4>
             <p className="sub-coffee-description">{product.description}</p>
             <p className="sub-coffee-price">${product.price}</p>

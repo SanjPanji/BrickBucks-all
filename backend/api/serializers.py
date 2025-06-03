@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model, authenticate
 from rest_framework import serializers
 from .models import Category, SubCategory, Product, Order, OrderItem, CustomUser
 
+User = get_user_model()
+
 # user 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -14,16 +16,33 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = CustomUser.objects.create_user(**validated_data)  # Создаём пользователя без email
         return user
 
+from rest_framework import serializers
+from django.contrib.auth import authenticate, get_user_model
+
+User = get_user_model()
+
 class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField()
+    email = serializers.EmailField()
     password = serializers.CharField(write_only=True)
-    phone = serializers.CharField(max_length=12, required=True)
 
     def validate(self, data):
-        user = authenticate(username=data["username"], phone=data["phone"], password=data["password"])
-        if not user:
-            raise serializers.ValidationError("Неверное имя пользователя, телефон, или пароль")
-        return user
+        email = data.get("email")
+        password = data.get("password")
+
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            raise serializers.ValidationError("Пользователь с таким email не найден")
+
+        # Используем username для аутентификации, если authenticate() работает по username
+        user = authenticate(username=user.username, password=password)
+
+        if not user or not user.is_active:
+            raise serializers.ValidationError("Неверный email или пароль")
+
+        data["user"] = user
+        return data
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

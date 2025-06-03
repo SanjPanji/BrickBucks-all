@@ -35,7 +35,7 @@ const [LegoCat,SetLegoCat] = useState([]);
 useEffect(()=> {
             async function FetchLego() {
                 try {
-                    const res = await a.get('categories/Lego/subcategory/');
+                    const res = await a.get('categories/lego/subcategory/');
                     SetLegoCat(res.data)
                 } catch(e) {
                     console.log(e);

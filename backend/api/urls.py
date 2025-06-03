@@ -10,6 +10,11 @@ urlpatterns = [
     path("auth/logout/", views.LogoutView.as_view(), name="logout"),
     path("user/", views.UserView.as_view(), name="user"),
 
+    path("products/", views.product_list_create, name="product_list_create"),
+    path("products/<int:pk>", views.product_detail, name="product_detail"),
+    path("order/create", views.create_order, name="create_order"),
+    path("order/<int:pk>", views.order_detail, name="order_detail"),
+
     path("categories/", views.category_list_create, name="category_list_create"),
     path("categories/<slug:slug>/", views.category_detail, name="category_detail"),
 
@@ -18,15 +23,9 @@ urlpatterns = [
 
     path("<slug:category_slug>/<slug:subcategory_slug>/products/", views.product_list_create_by_subcategory, name="product_list_create_by_subcategory"),
 
-    path("products/", views.product_list_create, name="product_list_create"),
-    path("products/<slug:slug>", views.product_detail, name="product_detail"),
-
-    path("order/create", views.create_order, name="create_order"),
-    path("order/<int:pk>", views.order_detail, name="order_detail"),
-
     path('favorites/', views.get_favorites, name="get_favorites"),
-    path('favorites/<slug:products_slug>/', views.toggle_favorite, name="toggle_favorite"),
+    path('favorites/<int:product_id>/', views.toggle_favorite, name="toggle_favorite"),
 
     path('cart/',views.get_cart ,name="get_cart"),
-    path('cart/<slug:products_slug>/', views.toggle_cart, name="toggle_cart"),
+    path('cart/<int:product_id>/', views.toggle_cart, name="toggle_cart"),
 ]

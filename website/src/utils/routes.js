@@ -11,7 +11,8 @@ import {
     JOIN_NOW,
     GIFT_CARD,
     SUSTAINABILITY,
-    INVINCIBLE
+    INVINCIBLE,
+    ORDER
 } from "./consts";
 
 import Home from "../pages/Home";
@@ -27,6 +28,7 @@ import Favorites from "../pages/Favorites";
 import JoinNow from "../pages/JoinNow";
 import SignIn from "../pages/SignIn";
 import CoffeeSubCtg from "../pages/CoffeeSubCtg";
+import Order from "../pages/Order";
 
 export const routes = [
   {
@@ -80,5 +82,9 @@ export const routes = [
   {
     path: INVINCIBLE,
     element: <Invincible />
+  },
+  {
+    path: ORDER,
+    element: <Order/>
   }
 ];

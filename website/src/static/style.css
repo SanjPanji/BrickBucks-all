@@ -72,10 +72,10 @@ a {
         color: var(--white);
         cursor: pointer;
     }
-.icon img {
-    width: 20px;
-    height: 20px;
-}
+    .icon img {
+        width: 20px;
+        height: 20px;
+    }
 
 .sign-in {
     background: none;
@@ -482,13 +482,18 @@ main  {
 
 .icon-2 svg {
     width: 32px;
-    fill: var(--white);
     stroke: var(--red);
     transition: fill 0.3s ease;
 }
 
 .icon-2:hover svg {
     fill: var(--red);
+}
+
+.cart {
+    border: none;
+    color: black;
+    background-color: transparent;
 }
 
 /*LegoSubCtg*/
@@ -556,7 +561,7 @@ main  {
 }
 
 
-/*Cart/order*/
+/*Cart*/
 .Cart {
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -602,24 +607,23 @@ main  {
 }
 .Cart-item-price {
     text-align: right;
+    margin: 0px 15px 0 0;
 }
 .Cart-pay {
     justify-self: center;
     text-align: center;
     padding: 20px;
-    height: 180px;
+    height: 130px;
     width: 200px;
     border: 1px solid var(--grey);
 }
-.Cart-cash-btn {
+.to-order {
     cursor: pointer;
     background-color: transparent;
-    margin: 20px 0;
+    margin: 30px 0;
     font-size: 20px;
-    border: 1px solid var(--green);
-    color: var(--green);
     border-radius: 14px;
-    padding: 5px;
+    padding: 5px 10px;
 }
 .Cart-cash-btn:active {
     color: white;
@@ -711,4 +715,118 @@ main  {
     flex-direction: column;
     width: 500px;
     padding: 30px;
+}
+.order {
+    display: flex;
+}
+
+.order-form {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 2rem;
+  padding: 2rem;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.order-form h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.order-info-form > div {
+  margin-bottom: 1rem;
+}
+
+.order-info-form p {
+    padding: 0 0.7rem;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.order-info-form input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.order-info-form input:focus {
+  border-color: #333;
+}
+
+.payment {
+  margin-top: 1.5rem;
+}
+
+.payment p {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.payment label {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1rem;
+  font-size: 0.95rem;
+  color: #444;
+  cursor: pointer;
+}
+
+.payment input[type="radio"] {
+  margin-right: 0.4rem;
+  accent-color: #007aff; /* синий кружок */
+}
+
+#place-order {
+  margin-top: 2rem;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#place-order:hover {
+  background: #333;
+}
+.order-submit-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* по желанию */
+}
+
+.order-submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 40px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.order-submit:hover {
+    background-color: #333;
+}
+.total-price {
+    margin: 15px 0;
 }
